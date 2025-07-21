@@ -1,18 +1,12 @@
 ---
-slug: greetings
+slug: Testing the blog post system.
 title: Greetings!
 authors:
-  - name: Joel Marcey
-    title: Co-creator of Docusaurus 1
-    url: https://github.com/JoelMarcey
-    image_url: https://github.com/JoelMarcey.png
-  - name: Sébastien Lorber
-    title: Docusaurus maintainer
-    url: https://sebastienlorber.com
-    image_url: https://github.com/slorber.png
-tags: [greetings]
+  - name: Angelator312
+    title: Creator of Loud Wolf
+    url: https://github.com/Angelator312
+    image_url: https://github.com/Angelator312.png
+tags: [test]
 ---
 
-Congratulations, you have made your first post!
-
-Feel free to play around and edit this post as much as you like.
+If you are seeing this, you know that the blog test is succesful.

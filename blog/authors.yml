@@ -17,9 +17,18 @@ slorber:
   image_url: https://github.com/slorber.png
   page:
     # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
+    permalink: "/all-sebastien-lorber-articles"
   socials:
     x: sebastienlorber
     linkedin: sebastienlorber
     github: slorber
     newsletter: https://thisweekinreact.com
+
+angelator312:
+  name: Angelator312
+  title: Creator of LoudWolf
+  url: https://Angelator312.top
+  image_url: https://github.com/Angelator312.png
+  page:
+    # customize the url of the author page at /blog/authors/<permalink>
+    permalink: "/Angelator312"
