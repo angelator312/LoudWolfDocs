@@ -90,6 +90,12 @@ const config: Config = {
           label: "GitHub",
           position: "right",
         },
+        {
+          type: "docsVersionDropdown",
+          versions: {
+            current: { label: "Latest" },
+          },
+        },
       ],
     },
     footer: {
