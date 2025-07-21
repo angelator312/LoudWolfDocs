@@ -2,7 +2,7 @@
 slug: Testing the blog post system.
 title: Greetings!
 authors:
-  - name: Angelator312
+  - name: angelator312
     title: Creator of Loud Wolf
     url: https://github.com/Angelator312
     image_url: https://github.com/Angelator312.png
