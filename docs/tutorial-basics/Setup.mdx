@@ -1,4 +1,36 @@
 ---
-title: Setup
+title: Setup plugin
 description: How to setup the plugin
 ---
+
+Make an account in [SilentWolf](https://silentwolf.com/auth).
+Make an game in SilentWolf,then copy your API key and your gameID.
+
+![api key img](/img/SilentWolfAPIKey.png)
+
+Open an autoload and add this to it
+
+```python
+# Globals
+func _ready():
+    LoudWolf.configure_api_key("YourAPIKey")
+    LoudWolf.configure_game_id("YourGameID")
+```
+
+Or if you are in open source project use an .env file to store your api key in seperate file named `LoudWolfAPIKey.env`.
+
+```python
+# Globals
+func _ready():
+    var file=FileAccess.open("res://LoudWolfAPIKey.env", FileAccess.READ)
+    LoudWolf.configure_api_key(file.get_as_text())
+    LoudWolf.configure_game_id("YourGameID")
+```
+
+And in `LoudWolfAPIKey.env` you paste **ONLY** your API key.
+```
+yourAPIKey
+```
+
+If you want to export to android you have to **add the internet permission**
+![Permissions IMG](/img/Android_export_permissions.png)

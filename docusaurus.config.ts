@@ -86,7 +86,7 @@ const config: Config = {
         },
         // { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/angelator312/LoudWolfDocs",
+          href: "https://github.com/angelator312/LoudWolf",
           label: "GitHub",
           position: "right",
         },
@@ -107,6 +107,10 @@ const config: Config = {
             {
               label: "Get Started",
               to: "/docs/intro",
+            },
+            {
+              label: "Github",
+              href: "https://github.com/angelator312/LoudWolfDocs",
             },
           ],
         },
