@@ -1,0 +1,83 @@
+---
+sidebar_position: 3
+title: Scores
+descrition: Scores Detailed Docs
+---
+
+Now, we are going to make a simple leaderboard.
+
+## Add Scores
+
+First let save the score of a player.
+
+```python
+LoudWolf.Scores.save_score(player_name:String, score:number|score_id)
+```
+
+::::tip
+
+If you want to await the saving prefer using
+
+```python
+await LoudWolf.Scores.save_score(player_name, score).sw_save_score_complete
+```
+
+::::
+
+## Get scores
+
+### Get highest scores
+
+You get the best X(number) scores with:
+
+```python
+await LoudWolf.Scores.get_score(X).sw_save_score_complete
+var scores=LoudWolf.Scores.scores
+```
+
+:::info
+If you don't specify X, you get the best 10 scores.
+:::
+
+:::info
+If you want to get all scores call `get_scores(0)`
+:::
+
+### Iterating in scores
+
+Iterate in scores with:
+
+```
+for score in scores:
+  print("Another score:",(score.score))
+```
+
+:::info
+scores are having theese variables in them
+
+score - number
+
+timestamp - number
+
+score_id:String - ID of the Score
+:::
+
+### Get scores of specific player
+Get the scores of player with
+```python
+await LoudWolf.Scores.get_scores_by_player(PLAYER_name).sw_get_player_scores_complete
+var player_scores:= str(LoudWolf.Scores.scores)
+print("Got: " + str(LoudWolf.Scores.scores.size()) + " scores for player: " + str(PLAYER_name))
+```
+### Get the top score for a specific player
+If you want the best top score for the specific player
+```python
+await LoudWolf.Scores.get_top_score_by_player(player_name).sw_top_player_score_complete
+print("Got top player score: " + str(LoudWolf.Scores.score))
+```
+### Find position of score in the leaderboard
+If you want to get the positoin of score
+```python
+await LoudWolf.Scores.get_score_position(score:number|score_id).sw_get_position_complete
+var position = LoudWolf.Scores.position
+```
