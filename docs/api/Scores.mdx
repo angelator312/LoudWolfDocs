@@ -5,23 +5,15 @@ descrition: Scores Detailed Docs
 ---
 Api Documentation for LoudWolf.Scores
 
-import StringType from '../../src/components/TypeComponents/StringType.tsx';
+import String from '@site/src/components/TypeComponents/StringType.tsx';
+import Number from '@site/src/components/TypeComponents/NumberType.tsx';
+import {ScoreIDTypeInAPI as ScoreID} from '@site/src/components/TypeComponents/ScoreIDType.tsx';
+import {ScoreTypeFromAPI as Score} from '@site/src/components/TypeComponents/ScoreType.tsx';
 
-:::info
-scores are having theese variables in them
-
-score - `number`
-
-timestamp:`number` - when the score is saved
-
-score_id:`String` - ID of the Score
-
-ldboard_name:`String` - name of leaderboard where is the score
-:::
 
 
 ### Save score
-`void` save_score(player_name:`String`, score:`number`|`scoreID`)
+`void` save_score(player_name:<String/>, score:<Number/>|<ScoreID/>)
 
 ```python
 await LoudWolf.Scores.save_score(player_name, score)
@@ -38,7 +30,7 @@ LoudWolf.Scores.save_score_async(player_name, score)
 ::::
 
 ### Get highest scores
-`array` get_scores(how_many:`number`)
+`array[`<Score/>`]` get_scores(how_many:<Number/>)
 
 ```python
 var scores=await LoudWolf.Scores.get_scores(how_many)
@@ -53,14 +45,14 @@ If you want to get all scores call `get_scores(0)`
 :::
 
 ### Get scores of specific player
-Get the scores of player with
+`array[`<Score/> get_scores_by_player(player_name:<String/>)
 ```python
 var player_scores:= await LoudWolf.Scores.get_scores_by_player(player_name)
 print("Got: " + str(LoudWolf.Scores.scores.size()) + " scores for player: " + str(player_name))
 ```
 
 ### Get the top score for a specific player
-`Score` get_top_score_by_player(player_name:<StringType/>)
+<Score/> get_top_score_by_player(player_name:<String/>)
 If you want the best top score for the specific player
 ```python
 var score:=await LoudWolf.Scores.get_top_score_by_player(player_name)
@@ -68,16 +60,15 @@ print("Got top player score: " + str(score))
 ```
 
 ### Find position of score in the leaderboard
-`int` get_score_position(score:`the score like number`|`scoreID`)
-Example
+`int` get_score_position(score:`the score like number`|<ScoreID/>)
+
 ```python
 var position := await LoudWolf.Scores.get_score_position(score|score_id)
 ```
 
 ### Delete a score
-`void` delete_score_async/delete_score(score_id: `scoreID`, ldboard_name: `leaderboard name`)
+`void` delete_score_async/delete_score(score_id: <ScoreID/>, ldboard_name: `leaderboard name`)
 
-Examples:
 ```python
 LoudWolf.Scores.delete_score_async(score:ScoreID)
 ```
@@ -90,7 +81,7 @@ await LoudWolf.Scores.delete_score(score:ScoreID)
 :::
 
 ### Delete entire leaderboard
-`void` wipe_leaderboard(name_of_leaderboard:`String`=`main`)
+`void` wipe_leaderboard(name_of_leaderboard:<String/> =`main`)
 
 :::tip
 Prefer using wipe_leaderboard everywhere with an argument
