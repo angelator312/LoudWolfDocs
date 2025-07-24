@@ -45,7 +45,9 @@ If you want to get all scores call `get_scores(0)`
 :::
 
 ### Get scores of specific player
-`array[`<Score/> get_scores_by_player(player_name:<String/>)
+`array[`<Score/>`]` get_scores_by_player(player_name:<String/>)
+
+Returns all scores of the specific player.
 ```python
 var player_scores:= await LoudWolf.Scores.get_scores_by_player(player_name)
 print("Got: " + str(LoudWolf.Scores.scores.size()) + " scores for player: " + str(player_name))
@@ -53,14 +55,15 @@ print("Got: " + str(LoudWolf.Scores.scores.size()) + " scores for player: " + st
 
 ### Get the top score for a specific player
 <Score/> get_top_score_by_player(player_name:<String/>)
-If you want the best top score for the specific player
+
+Returns the best <Score/> for the specific player.
 ```python
 var score:=await LoudWolf.Scores.get_top_score_by_player(player_name)
 print("Got top player score: " + str(score))
 ```
 
 ### Find position of score in the leaderboard
-`int` get_score_position(score:`the score like number`|<ScoreID/>)
+`int` get_score_position(score:<Number/>|<ScoreID/>)
 
 ```python
 var position := await LoudWolf.Scores.get_score_position(score|score_id)
@@ -77,7 +80,10 @@ If you want to delete and wait for the delete use:
 ```python
 await LoudWolf.Scores.delete_score(score:ScoreID)
 ```
+:::
 
+:::danger
+There's no undo of this action.
 :::
 
 ### Delete entire leaderboard
@@ -85,4 +91,7 @@ await LoudWolf.Scores.delete_score(score:ScoreID)
 
 :::tip
 Prefer using wipe_leaderboard everywhere with an argument
+:::
+:::danger
+There's no undo of this action.
 :::
