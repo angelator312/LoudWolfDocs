@@ -15,8 +15,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
     description: (
       <>
-        Loud Wolf was designed to be used fast and easy for use and it's made
-        for indie-developer.
+        Loud Wolf is designed to be used in game jams, so it's made for fast
+        prototyping, and it's easy to use.
       </>
     ),
   },

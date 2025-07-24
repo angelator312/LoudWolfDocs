@@ -35,7 +35,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      description="Godot plugin for making easy leaderboards, managing player data, and more and it provides a simple and intuitive API for developers."
     >
       <HomepageHeader />
       <main>
