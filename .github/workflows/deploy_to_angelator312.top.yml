@@ -8,7 +8,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      DEPLOY_URL: ${{ secrets.deploy_url }}
+      DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
     steps:
       - name: Trigger deploy
         shell: bash
