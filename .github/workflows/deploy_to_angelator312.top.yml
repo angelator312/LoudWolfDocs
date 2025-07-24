@@ -1,0 +1,15 @@
+name: Deploy to https://loudwolf.angelator312.top/
+on:
+  push:
+    branches: ["main"]
+    tags:
+      - "v*"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_URL: ${{ secrets.deploy_url }}
+    steps:
+      - name: Trigger deploy
+        shell: bash
+        run: curl "$DEPLOY_URL"
