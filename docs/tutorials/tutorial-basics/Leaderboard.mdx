@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Add Leaderboard
-descrition: Setup Leaderboard
+description: Setup simple leaderboard
 ---
 
 import Tabs from '@theme/Tabs';
@@ -22,6 +22,15 @@ Now, we are going to make a simple leaderboard.
 
 At the end you're going to have project like this [folder](https://github.com/angelator312/LoudWolfExamples/tree/main/tutorials/GetStarted)
 .You can download it from <a href={"https://download-directory.github.io/?url="+("https://github.com/angelator312/LoudWolfExamples/tree/main/tutorials/GetStarted")} download target="_blank">here</a>.
+
+## Learn some functions
+
+First we have to remember that everything for leaderbords is in [`LoudWolf.Scores`](../../api/Scores.mdx)
+
+Then let's go right into it.
+
+We have [`save_score(player_name:String,score:float)`](../../api/Scores#save-score)
+
 
 ## Create ScoreItem scene
 The root node is <HBoxContainer/>.Then you add 3 <Label plural/>.
