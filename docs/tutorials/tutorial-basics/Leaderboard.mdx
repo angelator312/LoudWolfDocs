@@ -82,7 +82,7 @@ I know, that is complicated so let see an image of the sccene tree:
 
 Add a script to the root `leaderboard.gd`.
 <Tabs>
-  <TabItem value="code" label="Code" default>
+  <TabItem value="code" label="Code">
   ```python title="leaderboard.gd"
   extends Control
   class_name LeaderboardScript
@@ -128,6 +128,59 @@ Add a script to the root `leaderboard.gd`.
 
   ```
   </TabItem>
+  <TabItem value="explanation" label="Explanation" default>
+  ```python title="leaderboard.exp.gd"
+  extends Control
+  class_name LeaderboardScript
+
+  # Some decalrations
+  const SCORE_ITEM = preload("score_item.tscn")
+  @onready var container: VBoxContainer = $M/V/Container
+  @onready var player_name: LineEdit = %PlayerName
+  @onready var score: LineEdit = %Score
+
+
+  func _ready() -> void:
+  	# Configure
+          LoudWolf.configure_api_key("CsCNpHfeeI4Tvt3u8y8Du6z1PzrWwkak6Y6YyWxY")
+  	LoudWolf.configure_game_id("examplegame1")
+  	make_scores() # Draw the leaderboard
+
+
+  func make_scores():
+  	await LoudWolf.Scores.get_scores(0) # Awaits all scores
+          # Add items:
+  	var i:=0
+  	for sc in LoudWolf.Scores.scores:
+  		add_item(sc,i)
+  		i+=1
+
+
+  func add_item(sc,i:int):
+  	var e:=SCORE_ITEM.instantiate()
+          # Sets the exported variables of the score_item
+  	e.order_idx=i+1
+  	e.player_name=sc.player_name
+  	e.score=sc.score
+  	container.add_child(e) # Add the score item to the container
+
+
+  ## Deletes all scores
+  func delete_scores():
+  	for e in container.get_children():
+  		e.queue_free()
+
+
+  func _on_add_score_pressed() -> void:
+          # Save score and awaits for the saving
+  	await LoudWolf.Scores.save_score(player_name.text,score.text)
+          # Reloads the leaderboard
+  	delete_scores()
+  	make_scores()
+
+  ```
+  </TabItem>
 </Tabs>
 
+If you can't understand what the script makes open the explanation tab, but please **first** think yourself.
 Ooh, I forget to say that you have to connect `AddScore`'s <ButtonPressed/> to the root script.
