@@ -3,14 +3,131 @@ sidebar_position: 3
 title: Add Leaderboard
 descrition: Setup Leaderboard
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Control from "@site/src/components/NodeComponents/Control.tsx"
+import Label from "@site/src/components/NodeComponents/Label.tsx"
+import Button from "@site/src/components/NodeComponents/Button.tsx"
+import LineEdit from "@site/src/components/NodeComponents/LineEdit.tsx"
+import MarginContainer from "@site/src/components/NodeComponents/MarginContainer.tsx"
+import VBoxContainer from "@site/src/components/NodeComponents/VBoxContainer.tsx"
+import HBoxContainer from "@site/src/components/NodeComponents/HBoxContainer.tsx"
+import ExportAnnotation from "@site/src/components/Annotations/ExportAnnotation.tsx"
+import ButtonPressed from "@site/src/components/Annotations/ButtonPressed.tsx"
+
 [Scores API docs](../../api/Scores.mdx)
 
 Now, we are going to make a simple leaderboard.
 
-At the end you're going to have project like this [folder](https://github.com/angelator312/LoudWolf/tree/main/docsExamples/tutorials/GetStarted/AddLeaderboard)
-.You can download it from <a href="https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fangelator312%2FLoudWolf%2Ftree%2Fmain%2FdocsExamples%2Ftutorials%2FGetStarted%2FAddLeaderboard" download target="_blank">here</a>.
+At the end you're going to have project like this [folder](https://github.com/angelator312/LoudWolfExamples/tree/main/tutorials/GetStarted)
+.You can download it from <a href={"https://download-directory.github.io/?url="+("https://github.com/angelator312/LoudWolfExamples/tree/main/tutorials/GetStarted")} download target="_blank">here</a>.
 
-## Setup scenes
+## Create ScoreItem scene
+The root node is <HBoxContainer/>.Then you add 3 <Label plural/>.
+They are named: `Order`, `Name` and `Score`.
 
-### Create a score_item scene
-The roor node is
+On the root node add a script named `score_item`.The scene tree have to look like this:
+
+![Img of scene tree](/img/tutorials/GetStarted/ScoreItem.png)
+
+In the script write(**don't paste**):
+```python title="score_item"
+extends Control
+class_name ScoreItem # Not nessecary
+
+
+@export var order_idx:int:
+	set(e):
+		order_idx=e
+		$Order.text=str(e)+"."
+
+@export var player_name:String:
+	set(e):
+		player_name=e
+		$Name.text=e
+
+@export var score:float:
+	set(e):
+		score=e
+		$Score.text=str(e)
+```
+The script <ExportAnnotation plural/>:
+
+  `order_idx` - first second...100th
+
+  `player_name` - Angelator312, NightGlider ...
+
+  `score` - 10.0, 20.0, 30.0 ...
+
+When you change the exported variables, you also change the text of the <Label plural/>.
+
+
+## Create Leaderboard scene
+
+The root is <Control/> with an full rect anchor.
+
+Then add a <MarginContainer/> with name `M`.Set `theme_override_constants/margin_left` to 100.
+
+Then add a <VBoxContainer/> with name `V`(it's children of `M`).
+
+Also add <VBoxContainer/> `Container` and <HBoxContainer/> `ContainerForAdd` as childs of `V`.
+
+Add 2 <LineEdit plural/> with names `PlayerName` and `Score`, also add a <Button/> with name `AddScore` to `ContainerForAdd`.
+Make the <LineEdit plural/> have unique name.
+
+I know, that is complicated so let see an image of the sccene tree:
+
+![Img of scene tree](/img/tutorials/GetStarted/LeaderboardSceneTree.png)
+
+Add a script to the root `leaderboard.gd`.
+<Tabs>
+  <TabItem value="code" label="Code" default>
+  ```python title="leaderboard.gd"
+  extends Control
+  class_name LeaderboardScript
+
+
+  const SCORE_ITEM = preload("score_item.tscn")
+  @onready var container: VBoxContainer = $M/V/Container
+  @onready var player_name: LineEdit = %PlayerName
+  @onready var score: LineEdit = %Score
+
+
+  func _ready() -> void:
+  	LoudWolf.configure_api_key("CsCNpHfeeI4Tvt3u8y8Du6z1PzrWwkak6Y6YyWxY")
+  	LoudWolf.configure_game_id("examplegame1")
+  	make_scores()
+
+
+  func make_scores():
+  	await LoudWolf.Scores.get_scores(0)
+  	var i:=0
+  	for sc in LoudWolf.Scores.scores:
+  		add_item(sc,i)
+  		i+=1
+
+
+  func add_item(sc,i:int):
+  	var e:=SCORE_ITEM.instantiate()
+  	e.order_idx=i+1
+  	e.player_name=sc.player_name
+  	e.score=sc.score
+  	container.add_child(e)
+
+
+  func delete_scores():
+  	for e in container.get_children():
+  		e.queue_free()
+
+
+  func _on_add_score_pressed() -> void:
+  	await LoudWolf.Scores.save_score(player_name.text,score.text)
+  	delete_scores()
+  	make_scores()
+
+  ```
+  </TabItem>
+</Tabs>
+
+Ooh, I forget to say that you have to connect `AddScore`'s <ButtonPressed/> to the root script.

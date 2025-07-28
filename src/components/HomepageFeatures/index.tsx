@@ -16,7 +16,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Loud Wolf is designed to be used in game jams, so it's made for fast
-        prototyping, and it's easy to use.
+        prototyping.
       </>
     ),
   },
@@ -25,10 +25,9 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
     description: (
       <>
-        Docusaurus lets you focus on your game, not the backend. It provides a
-        simple and intuitive way to create and manage your game's backend. With
-        Loud Wolf, you can easily add scores and leaderboards, player profiles.
-        And gives you control over your player data and game state.
+        LoudWolf lets you focus on your game, not the backend. It provides a
+        simple and intuitive way to create and manage your game's leaderboards,
+        scores, player accounts and player/game data.
       </>
     ),
   },
