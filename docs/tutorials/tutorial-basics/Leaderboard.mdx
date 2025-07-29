@@ -16,7 +16,7 @@ import HBoxContainer from "@site/src/components/NodeComponents/HBoxContainer.tsx
 import ExportAnnotation from "@site/src/components/Annotations/ExportAnnotation.tsx"
 import ButtonPressed from "@site/src/components/Annotations/ButtonPressed.tsx"
 
-[Scores API docs](../../api/Scores.mdx)
+[Scores API docs](../../api/modules/Scores.mdx)
 
 Now, we are going to make a simple leaderboard.
 
@@ -25,18 +25,18 @@ At the end you're going to have project like this [folder](https://github.com/an
 
 ## Learn some functions
 
-First we have to remember that everything for leaderbords is in [`LoudWolf.Scores`](../../api/Scores.mdx) and that every function have an async variation caleed `func_name`_async
+First we have to remember that everything for leaderbords is in [`LoudWolf.Scores`](../../api/modules/Scores.mdx) and that every function have an async variation called `func_name`_async
 
 Then let's go right into it.
 
-We have [`save_score(player_name:String,score:float)`](../../api/Scores#save-score)
+We have [`save_score(player_name:String,score:float)`](../../api/modules/Scores.mdx#save-score)
 
 It saves score for player(with name:`player_name`), but you have to use `await`.
 :::info
 If you don't want awaiting use `save_score_async(player_name,score)`
 :::
 
-We also have [`get_scores(x?:int)`](../../api/Scores#get-highest-scores)
+We also have [`get_scores(x?:int)`](../../api/modules/Scores.mdx#get-highest-scores)
 
 It get first `x` highest scores.
 ::::info
